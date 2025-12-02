@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>موقع هوستات لبوتاتك الديسكورد</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* نفس الCSS الذي لديك بالضبط */
+        :root {
+            --primary-color: #5865F2;
+            --secondary-color: #404EED;
+            --accent-color: #7289DA;
+            --dark-color: #2C2F33;
+            --darker-color: #23272A;
+            --light-color: #FFFFFF;
+            --text-color: #FFFFFF;
+            --success-color: #57F287;
+            --warning-color: #FEE75C;
+            --error-color: #ED4245;
+            --border-radius: 12px;
+            --box-shadow: 0 4px 15px rgba(88, 101, 242, 0.3);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--darker-color), var(--dark-color));
+            color: var(--text-color);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            border-radius: 0 0 var(--border-radius) var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(0,0,0,0.1)"/></svg>');
+            background-size: cover;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            position: relative;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            position: relative;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 20px;
+            margin-bottom: 2rem;
+        }
+
+        .sidebar {
+            background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--box-shadow);
+            border: 1px solid rgba(88, 101, 242, 0.2);
+            position: relative;
+        }
+
+        .sidebar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        }
+
+        .main-content {
+            background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--box-shadow);
+            border: 1px solid rgba(88, 101, 242, 0.2);
+            position: relative;
+        }
+
+        .main-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 15px;
+            margin-bottom: 8px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--text-color);
+            text-decoration: none;
+        }
+
+        .nav-item:hover {
+            background: rgba(88, 101, 242, 0.2);
+        }
+
+        .nav-item.active {
+            background: rgba(88, 101, 242, 0.3);
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .nav-icon {
+            font-size: 1.2rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: rgba(30, 30, 30, 0.7);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(88, 101, 242, 0.3);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--box-shadow);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #B0B0B0;
+            font-size: 0.9rem;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 0.85rem 1.7rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: 1rem;
+            transition: var(--transition);
+            font-weight: 500;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn:hover {
+            background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn:disabled {
+            background: #666;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, var(--success-color), #2D7D46);
+        }
+
+        .btn-warning {
+            background: linear-gradient(135deg, var(--warning-color), #B38C00);
+        }
+
+        .btn-error {
+            background: linear-gradient(135deg, var(--error-color), #A12D2F);
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 0.7rem;
+            font-weight: 500;
+            color: var(--light-color);
+        }
+
+        .input-group input,
+        .input-group textarea,
+        .input-group select {
+            width: 100%;
+            padding: 0.85rem;
+            background: rgba(30, 30, 30, 0.8);
+            border: 1px solid rgba(88, 101, 242, 0.3);
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            color: var(--text-color);
+            transition: var(--transition);
+        }
+
+        .input-group input:focus,
+        .input-group textarea:focus,
+        .input-group select:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 2px rgba(114, 137, 218, 0.2);
+        }
+
+        .input-group textarea {
+            min-height: 200px;
+            resize: vertical;
+            font-family: 'Courier New', monospace;
+            line-height: 1.4;
+        }
+
+        .bots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 1.5rem;
+        }
+
+        .bot-card {
+            background: rgba(30, 30, 30, 0.7);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            border: 1px solid rgba(88, 101, 242, 0.3);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .bot-card:hover {
+            background: rgba(88, 101, 242, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .bot-status {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .status-online {
+            background: var(--success-color);
+            box-shadow: 0 0 10px var(--success-color);
+        }
+
+        .status-offline {
+            background: var(--error-color);
+        }
+
+        .status-starting {
+            background: var(--warning-color);
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        .bot-card h4 {
+            margin-bottom: 0.5rem;
+            color: var(--light-color);
+            padding-right: 20px;
+        }
+
+        .bot-id {
+            color: var(--accent-color);
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+            direction: ltr;
+            text-align: left;
+        }
+
+        .bot-actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .bot-actions .btn {
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+            flex: 1;
+            min-width: 60px;
+        }
+
+        .logs-container {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            margin-top: 1rem;
+            max-height: 300px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            border: 1px solid rgba(88, 101, 242, 0.3);
+        }
+
+        .log-entry {
+            margin-bottom: 5px;
+            padding: 2px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .log-time {
+            color: var(--accent-color);
+            margin-left: 10px;
+        }
+
+        .log-error {
+            color: var(--error-color);
+        }
+
+        .log-success {
+            color: var(--success-color);
+        }
+
+        .log-warning {
+            color: var(--warning-color);
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(88, 101, 242, 0.2);
+            color: #B0B0B0;
+        }
+
+        .alert {
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 1rem;
+            border-left: 4px solid;
+        }
+
+        .alert-success {
+            background: rgba(87, 242, 135, 0.1);
+            border-color: var(--success-color);
+            color: var(--success-color);
+        }
+
+        .alert-error {
+            background: rgba(237, 66, 69, 0.1);
+            border-color: var(--error-color);
+            color: var(--error-color);
+        }
+
+        .alert-warning {
+            background: rgba(254, 231, 92, 0.1);
+            border-color: var(--warning-color);
+            color: var(--warning-color);
+        }
+
+        .file-upload {
+            border: 2px dashed rgba(88, 101, 242, 0.3);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .file-upload:hover {
+            border-color: var(--accent-color);
+            background: rgba(88, 101, 242, 0.1);
+        }
+
+        .file-upload.dragover {
+            border-color: var(--success-color);
+            background: rgba(87, 242, 135, 0.1);
+        }
+
+        .code-preview {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            margin-top: 1rem;
+            max-height: 200px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            border: 1px solid rgba(88, 101, 242, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+            
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .bots-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .bot-actions {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🤖 منصة استضافة بوتات Discord الحقيقية</h1>
+            <p>ارفع كود البوت فقط - التوكن موجود في الكود نفسه</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="dashboard">
+            <aside class="sidebar">
+                <nav>
+                    <a href="#" class="nav-item active" data-tab="dashboard">
+                        <span class="nav-icon">📊</span>
+                        <span>لوحة التحكم</span>
+                    </a>
+                    <a href="#" class="nav-item" data-tab="host-bot">
+                        <span class="nav-icon">🚀</span>
+                        <span>استضافة بوت جديد</span>
+                    </a>
+                    <a href="#" class="nav-item" data-tab="my-bots">
+                        <span class="nav-icon">🤖</span>
+                        <span>بوتاتي</span>
+                    </a>
+                    <a href="#" class="nav-item" data-tab="logs">
+                        <span class="nav-icon">📋</span>
+                        <span>السجلات</span>
+                    </a>
+                </nav>
+
+                <div style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1);">
+                    <div class="stat-card" style="background: transparent; border: none; padding: 0;">
+                        <div class="stat-number" id="total-bots">0</div>
+                        <div class="stat-label">البوتات المستضافة</div>
+                    </div>
+                    <div class="stat-card" style="background: transparent; border: none; padding: 0;">
+                        <div class="stat-number" id="online-bots">0</div>
+                        <div class="stat-label">البوتات الشغالة</div>
+                    </div>
+                </div>
+            </aside>
+
+            <main class="main-content">
+                <!-- لوحة التحكم -->
+                <div id="dashboard" class="tab-content active">
+                    <h2>📊 لوحة التحكم</h2>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number" id="stats-total">0</div>
+                            <div class="stat-label">إجمالي البوتات</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="stats-online">0</div>
+                            <div class="stat-label">بوتات الشغالة</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="stats-offline">0</div>
+                            <div class="stat-label">بوتات المتوقفة</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="stats-errors">0</div>
+                            <div class="stat-label">أخطاء اليوم</div>
+                        </div>
+                    </div>
+
+                    <h3 style="margin-top: 2rem;">🚀 بوتاتي الشغالة</h3>
+                    <div class="bots-grid" id="dashboard-bots">
+                        <!-- سيتم ملؤها بالجافاسكريبت -->
+                    </div>
+                </div>
+
+                <!-- استضافة بوت جديد -->
+                <div id="host-bot" class="tab-content">
+                    <h2>🚀 استضافة بوت جديد</h2>
+                    
+                    <div class="input-group">
+                        <label for="bot-name">اسم البوت:</label>
+                        <input type="text" id="bot-name" placeholder="أدخل اسم للبوت (اختياري)">
+                    </div>
+
+                    <div class="input-group">
+                        <label>رفع ملف البوت:</label>
+                        <div class="file-upload" id="file-upload">
+                            <div>📁 اسحب وأسقط ملف index.js هنا</div>
+                            <div style="font-size: 0.9rem; color: #B0B0B0; margin-top: 0.5rem;">
+                                أو انقر لاختيار الملف
+                            </div>
+                            <input type="file" id="file-input" accept=".js" style="display: none;">
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="bot-code">أو الصق الكود هنا:</label>
+                        <textarea id="bot-code" placeholder="الصق كود البوت الكامل هنا..."></textarea>
+                    </div>
+
+                    <button class="btn" onclick="hostNewBot()">
+                        <span>🚀 استضافة البوت</span>
+                    </button>
+
+                    <div id="code-preview" class="code-preview" style="display: none;">
+                        <strong>معاينة الكود:</strong>
+                        <pre id="preview-content"></pre>
+                    </div>
+
+                    <div style="margin-top: 2rem; background: rgba(0,0,0,0.3); padding: 1.5rem; border-radius: var(--border-radius);">
+                        <h4>📝 مثال لكود البوت:</h4>
+                        <pre style="background: rgba(0,0,0,0.5); padding: 1rem; border-radius: 8px; overflow-x: auto; color: var(--accent-color); direction: ltr; font-size: 0.8rem;">
+const { Client, GatewayIntentBits } = require('discord.js');
+
+const client = new Client({
+    intents: [
+        GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.MessageContent
+    ]
+});
+
+client.once('ready', () => {
+    console.log(`✅ ${client.user.tag} يعمل الآن!`);
+});
+
+client.on('messageCreate', message => {
+    if (message.author.bot) return;
+    
+    if (message.content === '!ping') {
+        message.reply('🏓 Pong!');
+    }
+});
+
+// التوكن موجود هنا في الكود
+client.login('YOUR_BOT_TOKEN_HERE');</pre>
+                    </div>
+                </div>
+
+                <!-- بوتاتي -->
+                <div id="my-bots" class="tab-content">
+                    <h2>🤖 بوتاتي المستضافة</h2>
+                    <div class="bots-grid" id="my-bots-grid">
+                        <!-- سيتم ملؤها بالجافاسكريبت -->
+                    </div>
+                </div>
+
+                <!-- السجلات -->
+                <div id="logs" class="tab-content">
+                    <h2>📋 سجلات النظام</h2>
+                    <div class="input-group">
+                        <label for="log-bot-select">اختر البوت:</label>
+                        <select id="log-bot-select">
+                            <option value="system">سجلات النظام</option>
+                        </select>
+                    </div>
+                    <div class="logs-container" id="logs-container">
+                        <div class="log-entry">
+                            <span class="log-time">[12:00:00]</span>
+                            <span>مرحباً بك في منصة استضافة بوتات Discord!</span>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1rem;">
+                        <button class="btn" onclick="clearLogs()">🗑️ مسح السجلات</button>
+                        <button class="btn" onclick="downloadLogs()">📥 تحميل السجلات</button>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© موقع استضافة بوتات الديسكورد   Dark Studio  </p>
+        </div>
+    </footer>
+
+    <script>
+const API_URL = '/api';
+        let hostedBots = [];
+        let systemLogs = [];
+
+        // تحميل البوتات من الخادم
+        async function loadBots() {
+            try {
+                const response = await fetch(`${API_URL}/bots`);
+                hostedBots = await response.json();
+                updateDashboard();
+                updateMyBots();
+                updateLogs();
+            } catch (error) {
+                console.error('❌ خطأ في تحميل البوتات:', error);
+                showAlert('❌ خطأ في الاتصال بالخادم', 'error');
+            }
+        }
+
+        // استضافة بوت جديد
+        async function hostNewBot() {
+            const name = document.getElementById('bot-name').value || `Bot-${Date.now()}`;
+            const code = document.getElementById('bot-code').value;
+            
+            if (!code.trim()) {
+                showAlert('❌ يرجى إدخال كود البوت أو رفع الملف', 'error');
+                return;
+            }
+
+            const botId = 'bot_' + Date.now().toString(36) + Math.random().toString(36).substr(2, 5);
+            
+            try {
+                const response = await fetch(`${API_URL}/host-bot`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        code: code,
+                        botId: botId
+                    })
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    showAlert('✅ تم استضافة البوت بنجاح!', 'success');
+                    
+                    // مسح الحقول
+                    document.getElementById('bot-name').value = '';
+                    document.getElementById('bot-code').value = '';
+                    document.getElementById('code-preview').style.display = 'none';
+                    document.getElementById('file-input').value = '';
+                    
+                    // إعادة تحميل البوتات
+                    setTimeout(loadBots, 2000);
+                } else {
+                    showAlert(`❌ خطأ: ${result.error}`, 'error');
+                }
+            } catch (error) {
+                showAlert('❌ خطأ في الاتصال بالخادم', 'error');
+            }
+        }
+
+        // إيقاف البوت
+        async function stopBot(botId) {
+            try {
+                const response = await fetch(`${API_URL}/stop-bot`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ botId: botId })
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    showAlert('✅ تم إيقاف البوت', 'success');
+                    setTimeout(loadBots, 1000);
+                } else {
+                    showAlert(`❌ خطأ: ${result.error}`, 'error');
+                }
+            } catch (error) {
+                showAlert('❌ خطأ في الاتصال بالخادم', 'error');
+            }
+        }
+
+        // إعادة تشغيل البوت
+        async function restartBot(botId) {
+            try {
+                const response = await fetch(`${API_URL}/restart-bot`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ botId: botId })
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    showAlert('✅ تم إعادة تشغيل البوت', 'success');
+                    setTimeout(loadBots, 2000);
+                } else {
+                    showAlert(`❌ خطأ: ${result.error}`, 'error');
+                }
+            } catch (error) {
+                showAlert('❌ خطأ في الاتصال بالخادم', 'error');
+            }
+        }
+
+        // حذف البوت
+        async function deleteBot(botId) {
+            if (!confirm('هل أنت متأكد من أنك تريد حذف هذا البوت؟')) return;
+            
+            try {
+                const response = await fetch(`${API_URL}/bot/${botId}`, {
+                    method: 'DELETE'
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    showAlert('✅ تم حذف البوت', 'success');
+                    setTimeout(loadBots, 1000);
+                } else {
+                    showAlert(`❌ خطأ: ${result.error}`, 'error');
+                }
+            } catch (error) {
+                showAlert('❌ خطأ في الاتصال بالخادم', 'error');
+            }
+        }
+
+        // إعداد رفع الملف
+        function setupFileUpload() {
+            const fileUpload = document.getElementById('file-upload');
+            const fileInput = document.getElementById('file-input');
+            const botCode = document.getElementById('bot-code');
+            const codePreview = document.getElementById('code-preview');
+            const previewContent = document.getElementById('preview-content');
+
+            fileUpload.addEventListener('click', () => {
+                fileInput.click();
+            });
+
+            fileUpload.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                fileUpload.classList.add('dragover');
+            });
+
+            fileUpload.addEventListener('dragleave', () => {
+                fileUpload.classList.remove('dragover');
+            });
+
+            fileUpload.addEventListener('drop', (e) => {
+                e.preventDefault();
+                fileUpload.classList.remove('dragover');
+                
+                const file = e.dataTransfer.files[0];
+                if (file && file.name.endsWith('.js')) {
+                    readFileContent(file);
+                } else {
+                    showAlert('❌ يرجى رفع ملف JavaScript فقط (.js)', 'error');
+                }
+            });
+
+            fileInput.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (file && file.name.endsWith('.js')) {
+                    readFileContent(file);
+                }
+            });
+
+            function readFileContent(file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const content = e.target.result;
+                    botCode.value = content;
+                    
+                    // عرض معاينة الكود
+                    previewContent.textContent = content.substring(0, 500) + (content.length > 500 ? '...' : '');
+                    codePreview.style.display = 'block';
+                    
+                    showAlert('✅ تم تحميل الملف بنجاح', 'success');
+                };
+                reader.readAsText(file);
+            }
+        }
+
+        // تحديث لوحة التحكم
+        function updateDashboard() {
+            const onlineBots = hostedBots.filter(bot => bot.status === 'online').length;
+            const offlineBots = hostedBots.filter(bot => bot.status === 'offline').length;
+            
+            document.getElementById('total-bots').textContent = hostedBots.length;
+            document.getElementById('online-bots').textContent = onlineBots;
+            document.getElementById('stats-total').textContent = hostedBots.length;
+            document.getElementById('stats-online').textContent = onlineBots;
+            document.getElementById('stats-offline').textContent = offlineBots;
+            document.getElementById('stats-errors').textContent = hostedBots.filter(bot => 
+                bot.logs && bot.logs.some(log => log.includes('[ERROR]'))
+            ).length;
+            
+            // تحديث قائمة البوتات في Dashboard
+            const dashboardBots = document.getElementById('dashboard-bots');
+            dashboardBots.innerHTML = '';
+            
+            hostedBots.slice(0, 6).forEach(bot => {
+                const botCard = createBotCard(bot);
+                dashboardBots.appendChild(botCard);
+            });
+        }
+
+        // تحديث صفحة بوتاتي
+        function updateMyBots() {
+            const myBotsGrid = document.getElementById('my-bots-grid');
+            myBotsGrid.innerHTML = '';
+            
+            hostedBots.forEach(bot => {
+                const botCard = createBotCard(bot);
+                myBotsGrid.appendChild(botCard);
+            });
+        }
+
+        // إنشاء بطاقة البوت
+        function createBotCard(bot) {
+            const card = document.createElement('div');
+            card.className = 'bot-card';
+            
+            const statusClass = bot.status === 'online' ? 'status-online' : 
+                              bot.status === 'starting' ? 'status-starting' : 'status-offline';
+            
+            const statusText = bot.status === 'online' ? 'نشط' :
+                             bot.status === 'starting' ? 'جاري التشغيل' : 'متوقف';
+            
+            card.innerHTML = `
+                <div class="bot-status ${statusClass}"></div>
+                <h4>${bot.name}</h4>
+                <div class="bot-id">ID: ${bot.id}</div>
+                <div style="font-size: 0.9rem; color: #B0B0B0;">
+                    <div>الحالة: ${statusText}</div>
+                    <div>تم الإنشاء: ${new Date(bot.createdAt).toLocaleDateString('ar-EG')}</div>
+                </div>
+                <div class="bot-actions">
+                    <button class="btn ${bot.status === 'online' ? 'btn-warning' : 'btn-success'}" 
+                            onclick="${bot.status === 'online' ? 'stopBot' : 'startBot'}('${bot.id}')">
+                        ${bot.status === 'online' ? '⏹️ إيقاف' : '▶️ تشغيل'}
+                    </button>
+                    <button class="btn" onclick="restartBot('${bot.id}')">🔄 إعادة</button>
+                    <button class="btn btn-error" onclick="deleteBot('${bot.id}')">🗑️ حذف</button>
+                </div>
+            `;
+            
+            return card;
+        }
+
+        // تحديث السجلات
+        function updateLogs() {
+            const logsContainer = document.getElementById('logs-container');
+            const botSelect = document.getElementById('log-bot-select');
+            
+            // تحديث قائمة البوتات في Select
+            botSelect.innerHTML = '<option value="system">سجلات النظام</option>';
+            hostedBots.forEach(bot => {
+                const option = document.createElement('option');
+                option.value = bot.id;
+                option.textContent = bot.name;
+                botSelect.appendChild(option);
+            });
+            
+            // عرض السجلات
+            logsContainer.innerHTML = '';
+            
+            // إضافة سجلات النظام
+            systemLogs.slice(-50).forEach(log => {
+                const logEntry = document.createElement('div');
+                logEntry.className = `log-entry log-${log.type}`;
+                logEntry.innerHTML = `<span class="log-time">[${log.time}]</span> <span>${log.message}</span>`;
+                logsContainer.appendChild(logEntry);
+            });
+            
+            logsContainer.scrollTop = logsContainer.scrollHeight;
+        }
+
+        // مسح السجلات
+        function clearLogs() {
+            if (!confirm('هل أنت متأكد من مسح جميع السجلات؟')) return;
+            systemLogs = [];
+            updateLogs();
+            showAlert('✅ تم مسح السجلات', 'success');
+        }
+
+        // تحميل السجلات
+        function downloadLogs() {
+            const logText = systemLogs.map(log => `[${log.time}] ${log.message}`).join('\n');
+            const blob = new Blob([logText], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `discord-bots-logs-${new Date().toISOString().split('T')[0]}.txt`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // عرض تنبيه
+        function showAlert(message, type) {
+            const alert = document.createElement('div');
+            alert.className = `alert alert-${type}`;
+            alert.textContent = message;
+            
+            const mainContent = document.querySelector('.main-content');
+            mainContent.insertBefore(alert, mainContent.firstChild);
+            
+            setTimeout(() => {
+                alert.remove();
+            }, 5000);
+        }
+
+        // إضافة سجل جديد
+        function addLog(message, type = 'info') {
+            const timestamp = new Date().toLocaleTimeString();
+            const logEntry = {
+                time: timestamp,
+                message: message,
+                type: type
+            };
+            
+            systemLogs.push(logEntry);
+            
+            // حفظ فقط آخر 1000 سجل
+            if (systemLogs.length > 1000) {
+                systemLogs = systemLogs.slice(-1000);
+            }
+            
+            updateLogs();
+        }
+
+        // تبديل التبويبات
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // إزالة النشاط من جميع العناصر
+                document.querySelectorAll('.nav-item').forEach(nav => {
+                    nav.classList.remove('active');
+                });
+                
+                // إخفاء جميع المحتويات
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                
+                // إضافة النشاط للعنصر الحالي
+                this.classList.add('active');
+                
+                // عرض المحتوى المقابل
+                const tabId = this.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // التهيئة عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            loadBots();
+            setupFileUpload();
+            addLog('تم تحميل منصة استضافة بوتات Discord الحقيقية', 'success');
+            
+            // تحديث البوتات كل 5 ثواني
+            setInterval(loadBots, 5000);
+        });
+    </script>
+</body>
+</html>
